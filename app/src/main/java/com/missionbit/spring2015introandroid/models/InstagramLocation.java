@@ -5,5 +5,8 @@ package com.missionbit.spring2015introandroid.models;
  */
 public class InstagramLocation {
 
-    String url;
+    public String name;
+    public String address;
+    public float latitude;
+    public float longitude;
 }
