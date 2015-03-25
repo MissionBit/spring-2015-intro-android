@@ -2,9 +2,9 @@
 
 
 
-Copy your current activity layout to another layout. You can call it instagram_photo.xml.
+RecyclerView Code: https://gist.github.com/dannyroa/89b118fde63168405bc6
 
-Replace your current activity layout with a RecyclerView.
+
 
 
 
