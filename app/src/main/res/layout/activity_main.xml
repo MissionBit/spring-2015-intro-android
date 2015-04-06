@@ -4,64 +4,10 @@
                 android:layout_height="match_parent"
                 tools:context=".MainActivity">
 
-
-    <TextView
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        tools:text="Username"/>
-
-    <TextView
-        android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_below="@id/username"
-        tools:text="Location"/>
-
-
-    <ImageView
-        android:id="@+id/photo"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        tools:src="@mipmap/placeholder"
-        android:layout_below="@id/location"
-        android:layout_marginBottom="10dp"
-        android:scaleType="fitXY"/>
-
-    <LinearLayout
-        android:id="@+id/like_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/photo"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/like"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:onClick="onLikeClick"
-            android:src="@mipmap/not_liked" />
-
-        </LinearLayout>
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/like_container"
-        android:onClick="onPrevClick"
-        android:text="@string/prev"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/like_container"
-        android:layout_alignParentRight="true"
-        android:onClick="onNextClick"
-        android:text="@string/next"/>
+        android:layout_height="match_parent"
+        />
 
 </RelativeLayout>

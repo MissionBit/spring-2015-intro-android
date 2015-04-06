@@ -2,6 +2,8 @@ package com.missionbit.spring2015introandroid;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,30 +15,24 @@ import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
 
-
-    ImageView ivPhoto;
-    TextView tvName;
-    TextView tvLocation;
-    ImageView ivLike;
-
     List<InstagramPhoto> instagramPhotos;
-    int ctr = 0;
 
-    int lastIndex;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ivPhoto = (ImageView) findViewById(R.id.photo);
-        tvName = (TextView) findViewById(R.id.username);
-        tvLocation = (TextView) findViewById(R.id.location);
-        ivLike = (ImageView) findViewById(R.id.like);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         populateList();
 
-        displayInstagramPhoto();
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        InstagramPhotoAdapter adapter = new InstagramPhotoAdapter(this, instagramPhotos);
+        recyclerView.setAdapter(adapter);
 
     }
 
@@ -72,65 +68,6 @@ public class MainActivity extends ActionBarActivity {
 
         instagramPhotos.add(photo3);
 
-        lastIndex = instagramPhotos.size() - 1;
-
     }
 
-    void displayInstagramPhoto() {
-
-        InstagramPhoto photo = instagramPhotos.get(ctr);
-        Picasso.with(this).load(photo.url).into(ivPhoto);
-
-        tvName.setText(photo.username);
-        tvLocation.setText(photo.location.name);
-
-        setLiked();
-
-    }
-
-    void setLiked() {
-
-        InstagramPhoto photo = instagramPhotos.get(ctr);
-
-        if (photo.isLiked) {
-            ivLike.setImageResource(R.mipmap.liked);
-        }
-        else {
-            ivLike.setImageResource(R.mipmap.not_liked);
-        }
-    }
-
-    public void onPrevClick(View view) {
-
-        if (ctr == 0) {
-            ctr = lastIndex;
-        }
-        else {
-            ctr--;
-        }
-
-        displayInstagramPhoto();
-    }
-
-    public void onNextClick(View view) {
-
-        if (ctr == lastIndex) {
-            ctr = 0;
-        }
-        else {
-            ctr++;
-        }
-
-        displayInstagramPhoto();
-    }
-
-    public void onLikeClick(View view) {
-
-        InstagramPhoto photo = instagramPhotos.get(ctr);
-        photo.isLiked = !photo.isLiked;
-
-        setLiked();
-
-
-    }
 }
